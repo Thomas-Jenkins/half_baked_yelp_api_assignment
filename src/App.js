@@ -26,7 +26,7 @@ function App() {
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
   const searchRestaurants = async () => {
     const resp = await fetchBusinesses(zip, search);
-    console.log('appJSResp: ', resp);
+    // console.log('appJSResp: ', resp);
     setBusinesses(resp);
   };
 

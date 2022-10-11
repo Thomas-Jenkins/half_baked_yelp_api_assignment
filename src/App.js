@@ -7,6 +7,7 @@ function App() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [zip, setZip] = useState('89509');
+  const [search, setSearch] = useState('');
 
 
   // TODO -- add state for zip / search and add event listeners to the inputs
@@ -24,10 +25,8 @@ function App() {
 
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
   const searchRestaurants = async () => {
-    const resp = await fetchBusinesses(zip);
-    // const resp = await fetch(`/.netlify/functions/yelp?zip=${zip}`);
-    // const data = await resp.json();
-    // console.log(resp);
+    const resp = await fetchBusinesses(zip, search);
+    console.log('appJSResp: ', resp);
     setBusinesses(resp);
   };
 
@@ -41,7 +40,7 @@ function App() {
         </div>
         <div className="form-control">
           <label>Query:</label>
-          <input type="text" placeholder="Search..." />
+          <input type="text" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <button onClick={searchRestaurants}>Search</button>
       </div>
